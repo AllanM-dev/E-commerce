@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import axios from 'axios';
 import { StoreService } from '../store.service';
+import {Router} from "@angular/router"
+
 
 @Component({
   selector: 'topbar',
@@ -9,13 +11,19 @@ import { StoreService } from '../store.service';
 })
 export class TopbarComponent {
   username: string = "";
-  isAdmin: boolean = false;
-  constructor(private storeservice: StoreService) {}
+  constructor(private storeservice: StoreService, private router: Router) {}
 
   async login() {
-    const { data, status } = await axios.get<any>(
-      `https://localhost:7290/Permissions?username=${this.username}`
-    );
-    this.storeservice.setIsAdmin(data);
+    if (this.username !== "") {
+      const { data, status } = await axios.get<any>(
+        `https://localhost:7290/user/isAdmin?username=${this.username}`
+      );
+      this.storeservice.setUsername(this.username);
+      if(data === true){
+        this.router.navigate(['/admin-view-component']);
+      } else {
+        this.router.navigate(['/']);
+      }
+    }
   }
 }

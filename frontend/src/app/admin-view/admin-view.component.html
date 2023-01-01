@@ -1,0 +1,18 @@
+<ion-content overflow-scroll="false">
+    <admin-navbar></admin-navbar>
+    <ion-card *ngFor="let keyValue of getEntities()">
+        <ion-card-header>
+            <ion-card-title>{{keyValue[0]}}</ion-card-title>
+        </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let product of keyValue[1]">
+            <div class="productItem">
+                <ion-label>{{product.name}}</ion-label>
+                <ion-label>{{product.price}} €</ion-label>
+            </div>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

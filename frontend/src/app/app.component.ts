@@ -7,13 +7,8 @@ import { StoreService } from './store.service';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit {
-  isAdmin: boolean = false;
-  createUserModal: boolean = false;
-  constructor(private storeservice: StoreService) { }
 
   ngOnInit() {
-    this.storeservice.isAdmin.subscribe(data=>{
-      this.isAdmin = data;
-    });
+
   }
 }

@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
+import { AdminViewComponent } from './admin-view/admin-view.component';
+import { UserViewComponent } from './user-view/user-view.component';
 
 
 @NgModule({
@@ -15,6 +17,8 @@ import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
     AppComponent,
     TopbarComponent,
     AdminNavbarComponent,
+    AdminViewComponent,
+    UserViewComponent,
   ],
   imports: [
     BrowserModule,
