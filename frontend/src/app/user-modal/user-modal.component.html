@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Create New User</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+    <ion-item>
+        <ion-label position="stacked">Enter username of the new user</ion-label>
+        <ion-input type="text" placeholder="Username" [(ngModel)]="name"></ion-input>
+    </ion-item>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-button slot="end" (click)="addAdmin()">Add New</ion-button>
+    </ion-toolbar>
+</ion-footer>

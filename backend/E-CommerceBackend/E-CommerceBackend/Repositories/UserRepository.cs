@@ -1,24 +1,23 @@
 ﻿using E_CommerceBackend.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_CommerceBackend.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : GenericRepository<UserModel>, IUserRepository
     {
-        readonly LibraryContext _libraryContext;
-        public UserRepository(LibraryContext context)
+        public UserRepository(MyDbContext context)
+            : base(context)
         {
-            _libraryContext = context;
+
         }
 
-        public void CreateUser(User user)
+        /// <summary>
+        /// Get a user with a specific username
+        /// </summary>
+        /// <param name="username">Username of the user</param>
+        public UserModel? GetUserByUsername(string username)
         {
-            _libraryContext.Set<User>().Add(user);
-            _libraryContext.SaveChanges();
-        }
-
-        public User? GetUserByUsername(string username)
-        {
-            return _libraryContext.Users.FirstOrDefault(user => user.Username == username);
+            return context.Set<UserModel>().AsNoTracking().FirstOrDefault(user => user.Username == username);
         }
     }
 }

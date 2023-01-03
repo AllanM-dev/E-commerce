@@ -2,19 +2,19 @@
 
 namespace E_CommerceBackend.Entities
 {
-    public class LibraryContext: DbContext
+    public class MyDbContext: DbContext
     {
-        public LibraryContext(DbContextOptions<LibraryContext> options) : base(options)
+        public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
             Database.Migrate();
         }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<UserModel> Users { get; set; }
+        public DbSet<ProductModel> Products { get; set; }
+        public DbSet<CategoryModel> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(new User
+            modelBuilder.Entity<UserModel>().HasData(new UserModel
             {
                 Id = 1,
                 Username = "admin",

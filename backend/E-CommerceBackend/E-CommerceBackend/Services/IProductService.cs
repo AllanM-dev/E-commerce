@@ -4,8 +4,8 @@ namespace E_CommerceBackend.Services
 {
     public interface IProductService
     {
-        public IEnumerable<Product> GetAllProducts();
-        public void CreateProduct(Product product);
-        public Dictionary<string, IEnumerable<Product>> GetProductsByCategories();
+        public IEnumerable<ProductModel> GetAllProducts();
+        public void CreateProduct(ProductModel product);
+        public Dictionary<string, IEnumerable<ProductModel>> GetProductsByCategories();
     }
 }

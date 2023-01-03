@@ -1,4 +1,5 @@
-﻿using E_CommerceBackend.Services;
+﻿using E_CommerceBackend.Entities;
+using E_CommerceBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_CommerceBackend.Controllers
@@ -7,27 +8,40 @@ namespace E_CommerceBackend.Controllers
     [Route("[controller]")]
     public class Category : ControllerBase
     {
-        readonly ICategoryService _catService;
+        private readonly ICategoryService _catService;
 
         public Category(ICategoryService catService)
         {
             _catService = catService;
         }
 
+        /// <summary>
+        /// Get the list of Categories
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IEnumerable<Entities.Category> GetCategories()
+        public IEnumerable<CategoryModel> GetCategories()
         {
             return _catService.GetAllCategories();
         }
 
+        /// <summary>
+        ///  Retrieve a Category by using its name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpGet("name")]
-        public Entities.Category? GetCategoryByName(
+        public CategoryModel? GetCategoryByName(
             [FromQuery] string name
             )
         {
             return _catService.GetCategoryByName(name);
         }
 
+        /// <summary>
+        /// Create a new Category
+        /// </summary>
+        /// <param name="name"></param>
         [HttpPost]
         public void PostCategory(
             [FromQuery] string name

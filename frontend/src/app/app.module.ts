@@ -10,6 +10,8 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { UserViewComponent } from './user-view/user-view.component';
+import { UserModalComponent } from './user-modal/user-modal.component';
+import { ProductModalComponent } from './product-modal/product-modal.component';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { UserViewComponent } from './user-view/user-view.component';
     AdminNavbarComponent,
     AdminViewComponent,
     UserViewComponent,
+    UserModalComponent,
+    ProductModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -35,7 +35,8 @@ namespace E_CommerceBackend
             var _connectionString = configRoot["PostgreSql:ConString"];
             var _dbPassword = configRoot["PostgreSql:DbPassword"];
             var _builder = new NpgsqlConnectionStringBuilder(_connectionString);
-            services.AddDbContext<LibraryContext>(options => options.UseNpgsql(_builder.ConnectionString));
+            services.AddDbContext<MyDbContext>(options => options.UseNpgsql(_builder.ConnectionString));
+
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserRepository, UserRepository>();

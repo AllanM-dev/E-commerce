@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Create New Product</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+    <div class="CategorySelection">
+        <ion-label>Category</ion-label>
+        <ion-list>
+            <ion-item>
+                <ion-select
+                    interface="popover"
+                    placeholder="Select a Category"
+                    [(ngModel)]="selectedCategory"
+                    (ionChange)="selectCategory()"
+                >
+                    <ion-select-option *ngFor="let category of categories" [value]="category.name">{{category.name}}</ion-select-option>
+                    <ion-select-option>Other</ion-select-option>
+                    
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div id="createCategorySection" style="display: none;">
+        <ion-input type="text" placeholder="Category Name" [(ngModel)]="newCategoryName"></ion-input>
+        <ion-button (click)="addCategory()">
+            <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button>
+    </div>
+    <ion-label>Name</ion-label>
+    <ion-input type="text" placeholder="Product Name" [(ngModel)]="productName"></ion-input>
+    <ion-label>Price</ion-label>
+    <ion-input type="number" inputmode="decimal" placeholder="Price" [(ngModel)]="productPrice" (keypress)="validationNumber($event)"></ion-input>
+    <ion-label>Image</ion-label>
+    <input id="inputFile" type="file" accept="image/*" width="300" height="300" (change)="uploadImage()" />
+    <img id="preview"/>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-button slot="end" (click)="addProduct()">Add New</ion-button>
+    </ion-toolbar>
+</ion-footer>

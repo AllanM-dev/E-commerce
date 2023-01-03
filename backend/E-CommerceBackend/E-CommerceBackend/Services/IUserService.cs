@@ -6,6 +6,6 @@ namespace E_CommerceBackend.Services
     {
         public bool UserIsAdmin(string username);
 
-        public void CreateUser(User user);
+        public void CreateUser(UserModel user);
     }
 }

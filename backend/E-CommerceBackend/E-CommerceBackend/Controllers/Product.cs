@@ -1,4 +1,5 @@
-﻿using E_CommerceBackend.Services;
+﻿using E_CommerceBackend.Entities;
+using E_CommerceBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_CommerceBackend.Controllers
@@ -7,28 +8,40 @@ namespace E_CommerceBackend.Controllers
     [Route("[controller]")]
     public class Product
     {
-        readonly IProductService _productService;
+        private readonly IProductService _productService;
 
         public Product(IProductService productService)
         {
             _productService = productService;
         }
 
+        /// <summary>
+        /// Create a new Product
+        /// </summary>
+        /// <param name="product"></param>
         [HttpPost]
         public void PostProduct(
-            [FromBody] Entities.Product product)
+            [FromBody] ProductModel product)
         {
             _productService.CreateProduct(product);
         }
 
+        /// <summary>
+        /// Get list of products
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IEnumerable<Entities.Product> GetProducts()
+        public IEnumerable<ProductModel> GetProducts()
         {
             return _productService.GetAllProducts();
         }
 
+        /// <summary>
+        /// Get categories and product associated
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("category")]
-        public Dictionary<string, IEnumerable<Entities.Product>> GetProductsByCategories()
+        public Dictionary<string, IEnumerable<ProductModel>> GetProductsByCategories()
         {
             return _productService.GetProductsByCategories();
         }

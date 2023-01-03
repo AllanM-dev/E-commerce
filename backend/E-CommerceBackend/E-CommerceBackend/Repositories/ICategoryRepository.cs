@@ -2,10 +2,8 @@
 
 namespace E_CommerceBackend.Repositories
 {
-    public interface ICategoryRepository
+    public interface ICategoryRepository : IGenericRepository<CategoryModel>
     {
-        IEnumerable<Category> GetAllCategories();
-        Category? GetCategoryByName(string categoryName);
-        void CreateCategory(string categoryName);
+        CategoryModel? GetCategoryByName(string categoryName);
     }
 }

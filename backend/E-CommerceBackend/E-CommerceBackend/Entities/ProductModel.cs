@@ -3,18 +3,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_CommerceBackend.Entities
 {
-    [Table("users", Schema ="dbo")]
-    public class User
+    [Table("products", Schema = "dbo")]
+    public class ProductModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
         [MaxLength(50)]
-        public string Username { get; set; }
+        public string Name { get; set; }
 
-        [Required]
-        public bool IsAdmin { get; set; }
+        public float Price { get; set; }
+
+        public byte[]? Image { get; set; }
+        public int CategoryId { get; set; }
     }
 }

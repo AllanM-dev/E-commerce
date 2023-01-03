@@ -1,3 +1,4 @@
+using E_CommerceBackend.Entities;
 using E_CommerceBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,13 +8,18 @@ namespace E_CommerceBackend.Controllers
     [Route("[controller]")]
     public class User : ControllerBase
     {
-        readonly IUserService _permissionService;
+        private readonly IUserService _permissionService;
 
         public User(IUserService permissionService)
         {
             _permissionService = permissionService;
         }
 
+        /// <summary>
+        /// Retrive the role of a user
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [HttpGet("isAdmin")]
         public bool GetPermission(
             [FromQuery] string username
@@ -22,9 +28,13 @@ namespace E_CommerceBackend.Controllers
             return _permissionService.UserIsAdmin(username);
         }
 
+        /// <summary>
+        /// Create a new user
+        /// </summary>
+        /// <param name="user"></param>
         [HttpPost()]
         public void PostUser(
-            [FromBody] Entities.User user
+            [FromBody] UserModel user
             )
         {
             _permissionService.CreateUser(user);

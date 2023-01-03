@@ -2,9 +2,8 @@
 
 namespace E_CommerceBackend.Repositories
 {
-    public interface IProductRepository
+    public interface IProductRepository : IGenericRepository<ProductModel>
     {
-        public IEnumerable<Product> GetAllProducts();
-        public void CreateProduct(Product product);
+
     }
 }

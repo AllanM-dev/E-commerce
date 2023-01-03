@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ECommerceBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class ContextSeed : Migration
+    public partial class ECommerceDbSeed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,18 +53,18 @@ namespace ECommerceBackend.Migrations
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Price = table.Column<float>(type: "real", nullable: false),
                     Image = table.Column<byte[]>(type: "bytea", nullable: true),
-                    CategoryId = table.Column<int>(type: "integer", nullable: false)
+                    CategoryId = table.Column<int>(type: "integer", nullable: false),
+                    CategoryModelId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_products_categories_CategoryId",
-                        column: x => x.CategoryId,
+                        name: "FK_products_categories_CategoryModelId",
+                        column: x => x.CategoryModelId,
                         principalSchema: "dbo",
                         principalTable: "categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -74,10 +74,10 @@ namespace ECommerceBackend.Migrations
                 values: new object[] { 1, true, "admin" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_products_CategoryId",
+                name: "IX_products_CategoryModelId",
                 schema: "dbo",
                 table: "products",
-                column: "CategoryId");
+                column: "CategoryModelId");
         }
 
         /// <inheritdoc />

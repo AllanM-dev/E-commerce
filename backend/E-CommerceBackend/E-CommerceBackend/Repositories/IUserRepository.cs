@@ -2,9 +2,8 @@
 
 namespace E_CommerceBackend.Repositories
 {
-    public interface IUserRepository
+    public interface IUserRepository : IGenericRepository<UserModel>
     {
-        public User? GetUserByUsername(string username);
-        public void CreateUser(User user);
+        public UserModel? GetUserByUsername(string username);
     }
 }

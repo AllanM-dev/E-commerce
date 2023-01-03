@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product, StoreService } from '../store.service';
 
-interface ProductByCat {
-  catName: string,
-  products: Product[]
-}
-
 @Component({
   selector: 'app-admin-view',
   templateUrl: './admin-view.component.html',
@@ -18,13 +13,14 @@ export class AdminViewComponent implements OnInit {
   constructor(private storeservice: StoreService) {}
 
   async ngOnInit(): Promise<void> {
+    // call the backend to update the list of products by category
     await this.storeservice.updateProductsByCategories();
     this.storeservice.productsByCategory.subscribe(x => this.categoryDict = x);
-    console.log(this.categoryDict);
-    console.log(Object.keys(this.categoryDict).length);
-    console.log(this.getEntities());
   }
 
+  /**
+   * Convert into array the dictionary of categories
+   */
   getEntities() {
     return Object.keys(this.categoryDict).map((key) => {
       return [key, (this.categoryDict as any)[key]]

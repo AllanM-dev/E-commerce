@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace E_CommerceBackend.Entities
 {
     [Table("categories", Schema = "dbo")]
-    public class Category
+    public class CategoryModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -12,6 +12,6 @@ namespace E_CommerceBackend.Entities
 
         public string Name { get; set; }
 
-        public ICollection<Product> Products { get; set; }
+        public virtual ICollection<ProductModel> Products { get; set; }
     }
 }
